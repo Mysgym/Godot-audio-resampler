@@ -1,4 +1,4 @@
-addons/Godot-audio-resampler/*
+addons/Godot-audio-resampler/*.so
 *.os
 tags
 *.dblite
