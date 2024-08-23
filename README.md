@@ -11,7 +11,8 @@ This project is built using Scons, and requires an [speex](https://www.speex.org
   git clone --recurse-submodules https://github.com/Mysgym/Godot-audio-resampler && cd Godot-audio-resampler
   ```
 
-  2 - Build using scons  
+  2 - Build using scons.  
+  (Godot-cpp sometimes doesn't compile correctly, try running the command again if you get a missing file)
   ```
   scons
   ```
