@@ -5,15 +5,13 @@ import sys
 try:
     Import("env")
 except Exception:
-    env = Environment()
-    env["gdcpppath"]="godot-cpp"
+    env = SConscript("godot-cpp/SConstruct")
     env["rootpath"]="."
     env["buildpath"] = ""
 
 rootpath = env["rootpath"]
 buildpath = env["buildpath"]
 
-env = SConscript(env["gdcpppath"] + "/SConstruct")
 # For reference:
 # - CCFLAGS are compilation flags shared between C and C++
 # - CFLAGS are for C-specific compilation flags
