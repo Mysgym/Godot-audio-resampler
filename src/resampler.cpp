@@ -24,7 +24,7 @@ void Resampler::init(unsigned int inputSampleRate, unsigned int outputSampleRate
 	resampler = speex_resampler_init(2,inputSampleRate,outputSampleRate,quality,&err);
    	ERR_FAIL_COND(resampler == NULL);
 
-	resamplingFactor = outputSampleRate/inputSampleRate;
+	resamplingFactor = float(outputSampleRate)/inputSampleRate;
 
 }
 
