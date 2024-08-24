@@ -1,10 +1,14 @@
-# Godot-rnnoise
+# Godot-audio-resampler
 
-This is a godot extension based on the [speex codec](https://www.speex.org) allowing for real-time resampling of audio signals.
-<br>
+This is a godot extension based on the [speex codec](https://www.speex.org) allowing for real-time resampling of audio signals.  
+
+It is part of a collection of tools aiming to provide modular audio processing for quality VOIP within godot.  
+Check out the other tools and the demo here : https://github.com/Mysgym/mysVOIPtools-godot4-demo
+
+
 ## Building
 
-This project is built using Scons, and requires an [speex](https://www.speex.org/downloads) static library. It should already be installed on most systems. 
+This project is built using Scons, and requires a [speex](https://www.speex.org/downloads) static library. It should already be installed on most systems. 
 
   1 - Clone this repo and the godot-cpp submodule  
   ```
@@ -26,8 +30,28 @@ Windows and macOS support is currently a work in progress, I encourage anyone at
 
 ### Demo
 
+A demo incorporating this extension in a VOIP setting is available here : https://github.com/Mysgym/mysVOIPtools-godot4-demo
+
+Here is the relevant code :
+
+```gdscript
+# --- Create objects
+@onready var resampler = AudioResampler.new()
+
+# --- Initialize resampler
+func _ready():
+	# initialize the resampler : From the opus sampling rate (48000) to the local mix rate. Quality=3 arbitrarily
+	resampler.init(48000, AudioServer.get_mix_rate(), 3)
+
+[..]
+  #resampling the frame (PackedVector2Array)
+	frame = resampler.resample(frame)
+[..]
+```
+
+
 ### Methods detail
-This extension adds a "Resampler" object to godot, which itself implements the following methods :
+This extension adds an "AudioResampler" object to godot, which itself implements the following methods :
 
 | Method definition | Method description |
 | ------------------|--------------------|
