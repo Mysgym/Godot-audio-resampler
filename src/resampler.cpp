@@ -5,10 +5,10 @@
 
 using namespace godot;	 
 
-Resampler::Resampler(){
+AudioResampler::AudioResampler(){
 }
 
-void Resampler::init(unsigned int inputSampleRate, unsigned int outputSampleRate, uint8_t quality = 3){
+void AudioResampler::init(float inputSampleRate_f, float outputSampleRate_f, uint8_t quality = 3){
 
 	if(resampler != NULL){
 		UtilityFunctions::printerr("GODOT AUDIO RESAMPLER ERROR : Double initialization of resampler");
@@ -19,6 +19,9 @@ void Resampler::init(unsigned int inputSampleRate, unsigned int outputSampleRate
 		UtilityFunctions::printerr("GODOT AUDIO RESAMPLER ERROR : Quality must be between 0 (worst) and 10 (best)");
 		return;
 	}
+	
+	unsigned int inputSampleRate = (unsigned int)inputSampleRate_f;
+	unsigned int outputSampleRate = (unsigned int)outputSampleRate_f;
 
 	int err;	
 	resampler = speex_resampler_init(2,inputSampleRate,outputSampleRate,quality,&err);
@@ -28,7 +31,7 @@ void Resampler::init(unsigned int inputSampleRate, unsigned int outputSampleRate
 
 }
 
-Resampler::~Resampler(){
+AudioResampler::~AudioResampler(){
 	
 	if(resampler != NULL){
 		speex_resampler_destroy(resampler);
@@ -36,7 +39,7 @@ Resampler::~Resampler(){
 }
 
 
-PackedVector2Array Resampler::resample(PackedVector2Array samples){
+PackedVector2Array AudioResampler::resample(PackedVector2Array samples){
 	
 	if(resampler == NULL){
 		UtilityFunctions::printerr("GODOT AUDIO RESAMPLER ERROR : Use of uninitialized resampler");
@@ -65,9 +68,9 @@ PackedVector2Array Resampler::resample(PackedVector2Array samples){
 
 }
 
-void Resampler::_bind_methods(){
+void AudioResampler::_bind_methods(){
 	
-	ClassDB::bind_method(D_METHOD("resample"), &Resampler::resample);
-	ClassDB::bind_method(D_METHOD("init"), &Resampler::init);
+	ClassDB::bind_method(D_METHOD("resample"), &AudioResampler::resample);
+	ClassDB::bind_method(D_METHOD("init"), &AudioResampler::init);
 
 }

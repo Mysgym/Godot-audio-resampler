@@ -6,8 +6,8 @@
 
 namespace godot {
 	
-	class Resampler : public Object{
-		GDCLASS(Resampler, Object);
+	class AudioResampler: public Object{
+		GDCLASS(AudioResampler, Object);
 
 		protected:
 			SpeexResamplerState *resampler = NULL;
@@ -16,10 +16,10 @@ namespace godot {
 			static void _bind_methods();
 
 		public:
-			Resampler();
+			AudioResampler();
 			//Can't expose constructor parameters to godot scripting, gotta have a separate init
-			void init(unsigned int inputSampleRate, unsigned int outputSampleRate, uint8_t quality);
-			~Resampler();
+			void init(float inputSampleRate_f, float outputSampleRate_f, uint8_t quality);
+			~AudioResampler();
 			PackedVector2Array resample(PackedVector2Array samples);
 
 	};

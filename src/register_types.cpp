@@ -13,7 +13,7 @@ void initialize_resampler_module(ModuleInitializationLevel p_level){
 		return;
 	}
 
-	ClassDB::register_class<Resampler>();	
+	ClassDB::register_class<AudioResampler>();	
 }
 
 void uninitialize_resampler_module(ModuleInitializationLevel p_level){
