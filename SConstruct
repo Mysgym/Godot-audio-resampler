@@ -27,14 +27,26 @@ env.Append(CCFLAGS=["-I"+rootpath+"/inc","-I"+rootpath+"lib/inc"])
 sources = Glob("src/*.cpp")
 
 
-if env["platform"] != "linux":
-    print("ERROR : This project only supports linux, yet.")
+if env["platform"] == "macos":
+    print("ERROR : This project doesn't support macos yet.")
+if env["platform"] == "windows":
+    print("INFO : Compiling for windows, unsure if this works")
+    env.Tool('mingw')
+    env.Append(CPPPATH=['#lib/inc'])
+    env.Append(CXXFLAGS=['-fPIC'])
+    env.Append(LIBPATH=['#lib/bin/windows'])
+    env.Append(LIBS=['speex'])
+    library = env.SharedLibrary(
+        "addons/Godot-audio-resampler/libgodotaudioresampler_windows_{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+        source=sources,
+    )
+
 else:
     env.Append(CPPPATH=['/usr/include/speex'])
     env.Append(LIBPATH=['/usr/lib'])
     env.Append(LIBS=['speex', 'speexdsp'])
     library = env.SharedLibrary(
-        "addons/Godot-audio-resampler/libgodotaudioresampler{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+        "addons/Godot-audio-resampler/libgodotaudioresampler_linux_{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
     )
 
