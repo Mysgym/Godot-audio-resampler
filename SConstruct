@@ -37,7 +37,7 @@ if env["platform"] == "windows":
     env.Append(LIBPATH=['#lib/bin/windows'])
     env.Append(LIBS=['speex'])
     library = env.SharedLibrary(
-        "addons/Godot-audio-resampler/libgodotaudioresampler_windows_{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+        "addons/Godot-audio-resampler/libgodotaudioresampler{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
     )
 
