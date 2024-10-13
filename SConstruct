@@ -50,7 +50,7 @@ else:
         source=sources,
     )
 
-    if(buildpath != ""):
-        os.system("cp addons/Godot-audio-resampler " + buildpath + "/ -r")
+if(buildpath != ""):
+    os.system("cp addons/Godot-audio-resampler " + buildpath + "/ -r")
 
 Default(library)
