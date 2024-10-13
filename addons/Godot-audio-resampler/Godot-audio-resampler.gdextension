@@ -7,3 +7,4 @@ reloadable = true
 [libraries]
 
 linux.debug.x86_64 = "res://addons/Godot-audio-resampler/libgodotaudioresampler.linux.template_debug.x86_64.so"
+windows.debug.x86_64 = "res://addons/Godot-audio-resampler/libgodotaudioresampler._windows_.windows.template_debug.x86_64.so"
