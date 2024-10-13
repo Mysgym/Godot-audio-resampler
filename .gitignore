@@ -1,6 +1,7 @@
 addons/Godot-audio-resampler/*.so
 addons/Godot-audio-resampler/*.dll
 addons/Godot-audio-resampler/*.a
+*.o
 *.os
 tags
 *.dblite
